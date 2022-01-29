@@ -28,7 +28,7 @@ public class StringHelperParameterizedTest {
 	public static Collection<String[]> getParameters() {
 
 		String[][] testParam = { { "AACD", "CD" }, { "ABFN", "BFN" }, 
-				{ "AKL", "KL" },{"SDA","DA"} };
+				{ "AKL", "KL" } };
 
 		return Arrays.asList(testParam);
 	}
