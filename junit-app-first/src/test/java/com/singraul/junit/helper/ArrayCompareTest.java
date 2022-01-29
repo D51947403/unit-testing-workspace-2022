@@ -1,6 +1,6 @@
 package com.singraul.junit.helper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.util.Arrays;
 
@@ -21,6 +21,15 @@ public class ArrayCompareTest {
 	public void testSortArray_nullArray() {
 	   int[] num=null;
 	   Arrays.sort(num);
+	}
+	// here time value in milliseconds 
+	@Test(timeout = 100)
+	public void testSortArray_performance() {
+	   int[] num= {14,17,13,10,0,21};
+	   for(int i=0; i< 1000000; i++) {
+		   num[0]=i;
+		   Arrays.sort(num);
+	   }
 	}
 
 }
