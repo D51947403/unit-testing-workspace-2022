@@ -16,6 +16,7 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -34,6 +35,11 @@ public class TodoBusinessImplAnnotationMockTest {
 	// TodoBusinessImpl todoBusinessImpl = new TodoBusinessImpl(todoServiceMock);
 	@InjectMocks 
 	TodoBusinessImpl todoBusinessImpl ;
+	
+	//@Captor is the replacement of 
+	//	ArgumentCaptor<String> stringArgCaptor = new ArgumentCaptor<>();
+	@Captor
+	ArgumentCaptor<String> stringArgCaptor;
 	
 	@Test
 	public void testRetrieveTodosRelatedToSpring_mockito1() {
@@ -91,7 +97,7 @@ public class TodoBusinessImplAnnotationMockTest {
 
 	@Test
 	public void testDeleteTodosNotRelatedToSpring_usingBDD_argumentCature() {
-		ArgumentCaptor<String> stringArgCaptor = new ArgumentCaptor<>();
+	
 		// given
 		List<String> todoList = Arrays.asList("Spring MVC", "Spring AOP", "Spring ORM", "MySQL");
 
