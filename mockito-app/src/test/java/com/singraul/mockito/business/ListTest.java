@@ -1,6 +1,8 @@
 package com.singraul.mockito.business;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -52,5 +54,17 @@ public class ListTest {
 		List mockList = mock(List.class);
 		when(mockList.get(anyInt())).thenThrow(new RuntimeException("Custom Runtime exception"));
 		mockList.get(7);
+	}
+	
+	// BDD= Business Driven Development 
+	@Test
+	public void testListGetMethod_usingBDD() {
+		//Given
+		List<String> mockList = mock(List.class);
+		//When 
+		given(mockList.get(0)).willReturn("Devendra");
+		//then
+		assertThat(mockList.get(0) , is("Devendra"));
+		
 	}
 }
