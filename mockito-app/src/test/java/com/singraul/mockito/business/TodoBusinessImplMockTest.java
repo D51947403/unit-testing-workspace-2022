@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 
 import com.singraul.mockito.data.api.TodoService;
 
@@ -81,6 +83,31 @@ public class TodoBusinessImplMockTest {
 		
 		verify(todoServiceMock ,never()).deleteTodo("Learn Spring MVC");
 	}
+	
+	
+	
+	@Test 
+	public void testDeleteTodosNotRelatedToSpring_usingBDD_argumentCature() {
+		ArgumentCaptor<String>  stringArgCaptor = new ArgumentCaptor<>();
+		// given
+		TodoService  todoServiceMock= mock(TodoService.class);
+		
+		List<String>  todoList= Arrays.asList("Spring MVC", "Spring AOP", "Spring ORM" ,"MySQL");
+		
+		given(todoServiceMock.retrieveTodos("devendra")).willReturn(todoList);
+		
+		TodoBusinessImpl  todoBusinessimp= new TodoBusinessImpl(todoServiceMock);
+		//when
+		todoBusinessimp.deleteTodosNotRelatedToSpring("devendra");
+		//then 
+		//verify(todoServiceMock, times(1)).deleteTodo(stringArgCaptor.capture());
+		then(todoServiceMock).should().deleteTodo(stringArgCaptor.capture());
+		
+		assertThat(stringArgCaptor.getValue() ,is("MySQL"));
+	}
+	
+	
+	
 	
 	@Test
 	public void testDeleteTodosNotRelatedToSpring() {
