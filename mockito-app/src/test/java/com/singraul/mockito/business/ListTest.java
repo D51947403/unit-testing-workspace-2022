@@ -61,10 +61,12 @@ public class ListTest {
 	public void testListGetMethod_usingBDD() {
 		//Given
 		List<String> mockList = mock(List.class);
-		//When 
+	
 		given(mockList.get(0)).willReturn("Devendra");
+		//When 
+		String firstElement=mockList.get(0);
 		//then
-		assertThat(mockList.get(0) , is("Devendra"));
+		assertThat(firstElement , is("Devendra"));
 		
 	}
 }

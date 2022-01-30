@@ -48,12 +48,13 @@ public class TodoBusinessImplMockTest {
 		TodoService todoService = mock(TodoService.class);
 		
 		List<String> todoList = Arrays.asList("Learn Spring MVC", "Learn Spring", "Learn to Dance");
-      // When
+     
 		given(todoService.retrieveTodos("funny")).willReturn(todoList);
 
 		TodoBusinessImpl todoBusinessImpl = new TodoBusinessImpl(todoService);
-		//then 
+		//when
 		List<String> todos = todoBusinessImpl.retrieveTodosRelatedToSpring("funny");
+		//then
 		assertThat(todos.size() , is(2));
 	}
 	
